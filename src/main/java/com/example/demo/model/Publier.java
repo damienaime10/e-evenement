@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Entity
 @Table (name="publiers")
 public class Publier {
@@ -50,8 +50,32 @@ public class Publier {
 
     @Column
 	@Nonnull
-	private Integer statut;	
+	private Integer statut;
 
-	
 
+
+	public Publier(@Nonnull String nom, @Nonnull String contact, @Nonnull String email, @Nonnull String logo, @Nonnull String password, @Nonnull String description, @Nonnull Integer statut) {
+		this.nom = nom;
+		this.contact = contact;
+		this.email = email;
+		this.logo = logo;
+		this.password = password;
+		this.description = description;
+		this.statut = statut;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Publier{" +
+				"publierId=" + publierId +
+				", nom='" + nom + '\'' +
+				", contact='" + contact + '\'' +
+				", email='" + email + '\'' +
+				", logo='" + logo + '\'' +
+				", password='" + password + '\'' +
+				", description='" + description + '\'' +
+				", statut=" + statut +
+				'}';
+	}
 }
