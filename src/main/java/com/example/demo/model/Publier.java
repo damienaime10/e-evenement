@@ -1,15 +1,12 @@
 package com.example.demo.model;
 
 import jakarta.annotation.Nonnull;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 
 @Data
@@ -52,7 +49,14 @@ public class Publier {
 	@Nonnull
 	private Integer statut;
 
-
+	@Column
+	@Nonnull
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created_at;
+	@PrePersist
+	protected  void onCreated(){
+		created_at=new Date();
+	}
 
 	public Publier(@Nonnull String nom, @Nonnull String contact, @Nonnull String email, @Nonnull String logo, @Nonnull String password, @Nonnull String description, @Nonnull Integer statut) {
 		this.nom = nom;

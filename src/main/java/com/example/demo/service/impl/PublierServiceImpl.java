@@ -22,4 +22,15 @@ public class PublierServiceImpl implements PublierService {
         Optional <Publier>  existPublier = this.publierRepository.findByEmail(email);
         return existPublier.isPresent();
     }
+
+    @Override
+    public Boolean existPublier(String email, String password) {
+        Optional <Publier> existPublier = this.publierRepository.findByEmailAndPassword(email,password);
+        return existPublier.isPresent();
+    }
+
+    @Override
+    public Publier getPublier(Long id) {
+        return this.publierRepository.findById(id).get();
+    }
 }

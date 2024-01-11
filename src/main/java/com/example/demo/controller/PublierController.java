@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.DTO.LoginDTO;
 import com.example.demo.model.Publier;
 import com.example.demo.service.PublierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,23 @@ public class PublierController {
         }
 
         this.publierService.createPublier(publier);
-        return "/connexion";
+        return "/login";
     }
 
+    @GetMapping("/login")
+    public String login_page(Model model){
+        model.addAttribute("loginDTO",new LoginDTO());
+        return "connexion";
+    }
+
+    @PostMapping("/login-post")
+    public String login_post(@ModelAttribute("loginDTO") LoginDTO loginDTO,
+                             RedirectAttributes redirectAttributes){
+        if(!publierService.existPublier(loginDTO.getEmail(),loginDTO.getPassword())){
+            redirectAttributes.addFlashAttribute("error","email ou mot de passe incorrect");
+            return "redirect:/connexion";
+        }
+        return "/index";
+    }
 
 }

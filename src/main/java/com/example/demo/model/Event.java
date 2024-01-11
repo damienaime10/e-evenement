@@ -2,16 +2,11 @@ package com.example.demo.model;
 
 import java.util.Date;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.CurrentTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.annotation.Nonnull;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -48,7 +43,6 @@ public class Event {
 	private String contact;
 
     @Column
-	@Nonnull
 	private String email;
 
     @Column
@@ -59,7 +53,6 @@ public class Event {
 	private String photo;
 
     @Column
-	@Nonnull
 	private Integer participantNumber;
 
     @ManyToOne
@@ -69,10 +62,18 @@ public class Event {
 	@Nonnull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date eventDate;
-	
-	
-	
 
-	
+	@Column
+	@Nonnull
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created_at;
+	@PrePersist
+	protected  void onCreated(){
+		created_at=new Date();
+	}
+
+
+
+
 
 }
