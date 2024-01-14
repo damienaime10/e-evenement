@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.Set;
 
 
 @Data
@@ -25,9 +26,13 @@ public class Comment {
 	@Nonnull
 	private String commentaire;
 
-    @Column
-	@Nonnull
-	private String nom;
+	@ManyToMany
+	@JoinTable(
+			name = "comment_publier",
+			joinColumns = @JoinColumn(name = "comment_id"),
+			inverseJoinColumns = @JoinColumn(name = "publier_id")
+	)
+	private Set<Publier> publiers;
 
 
     @ManyToOne
@@ -41,10 +46,5 @@ public class Comment {
 	protected  void onCreated(){
 		created_at=new Date();
 	}
-		
-	
-	
-
-	
 
 }

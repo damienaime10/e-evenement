@@ -1,0 +1,26 @@
+body{
+    font-family: Serif;
+    font-style: italic;
+}
+.create{
+    position: relative;
+    left: 20%;
+}
+.table{
+    width: 50%;
+    margin: auto;
+}
+thead th{
+    text-align: center;
+}
+tbody tr{
+    height: 30px;
+}
+tbody td{
+    text-align: center;
+}
+
+.card{
+    margin: auto;
+    margin-top: 5%;
+}

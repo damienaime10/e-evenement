@@ -38,6 +38,14 @@ public class EventController {
         return "my_event";
     }
 
+    @GetMapping("/details_event/{id}")
+    public String details_event(@RequestParam("id") Long id, Model model){
+        Event event = this.eventService.getEvent(id);
+
+        model.addAttribute("event",event);
+        return "details_event";
+    }
+
     @PostMapping("/event-post")
     public String create_event(@ModelAttribute("eventDTO") EventDTO eventDTO){
 

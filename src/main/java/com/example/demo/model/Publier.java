@@ -45,27 +45,27 @@ public class Publier {
 	@Nonnull
 	private String description;
 
-    @Column
-	@Nonnull
-	private Integer statut;
-
 	@Column
 	@Nonnull
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created_at;
+
+	@Column
+	private Boolean statut;
 	@PrePersist
 	protected  void onCreated(){
 		created_at=new Date();
+		statut=false;
 	}
 
-	public Publier(@Nonnull String nom, @Nonnull String contact, @Nonnull String email, @Nonnull String logo, @Nonnull String password, @Nonnull String description, @Nonnull Integer statut) {
+
+	public Publier(@Nonnull String nom, @Nonnull String contact, @Nonnull String email, @Nonnull String logo, @Nonnull String password, @Nonnull String description) {
 		this.nom = nom;
 		this.contact = contact;
 		this.email = email;
 		this.logo = logo;
 		this.password = password;
 		this.description = description;
-		this.statut = statut;
 	}
 
 

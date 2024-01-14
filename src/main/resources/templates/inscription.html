@@ -1,14 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Page d'inscription</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+<head th:replace="fragments/head :: head"></head>
 <body>
+
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h5 class="card-title text-center">Inscription</h5>
+        <p class="text-danger text-center" th:text="${error}"></p>
+        <form class="row g-3 needs-validation" method="post" th:action="@{/register}" th:object="${publier}" novalidate>
+            <div class="col-md-12 position-relative">
+                <label for="validationTooltip01" class="form-label">Nom</label>
+                <input type="text" th:field="*{nom}" th:value="${user.nom}"  class="form-control" id="validationTooltip01" th:placeholder="nom et prénoms" required>
+                <div class="valid-tooltip">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-12 position-relative">
+                <label for="validationTooltip02" class="form-label">Prénoms</label>
+                <input type="text" th:field="*{contact}" th:value="${user.prenoms}" class="form-control" id="validationTooltip02" th:placeholder="contact" required>
+                <div class="valid-tooltip">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-12 position-relative">
+                <label for="validationTooltipUsername" class="form-label">Email</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                    <input type="email" th:field="*{email}" th:value="${user.email}" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+                    <div class="invalid-tooltip">
+                        Please choose a unique and valid email.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 position-relative">
+                <label for="validationTooltip03" class="form-label">Password</label>
+                <input type="password" th:field="*{password}" th:value="${user.password}" class="form-control" id="validationTooltip03" required>
+                <div class="invalid-tooltip">
+                    Please provide a valid password.
+                </div>
+            </div>
+            <div class="col-md-12 position-relative">
+                <label for="validationTooltip04" class="form-label">Logo</label>
+                <input type="file" th:field="*{logo}" th:value="${user.logo}" class="form-control" id="validationTooltip04" th:placeholder="logo" required>
+                <div class="valid-tooltip">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-12 position-relative">
+                <label for="validationTooltip05" class="form-label">Description</label>
+                <input type="text" th:field="*{description}" th:value="${user.description}" class="form-control" id="validationTooltip05" th:placeholder="description" required>
+                <div class="valid-tooltip">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="col-12 text-center">
+                <button class="btn btn-primary " type="submit">S'inscrire</button>
+            </div>
+        </form>
+
+        <div class="col-12 text-center">
+            <a href="/login" class="card-link" >Déjà un compte? se connecter</a>
+        </div>
+
+    </div>
+</div>
+
 </body>
 </html>
