@@ -19,14 +19,14 @@ public class PublierController {
     @GetMapping("/register")
     public  String register_page(Model model){
         model.addAttribute("publier",new Publier());
-        return "inscription";
+        return "register";
     }
 
-    @PostMapping("register-post")
+    @PostMapping("/register-post")
     public  String register_post(@ModelAttribute("publier") Publier publier,
                                  RedirectAttributes redirectAttributes){
 
-        if(!this.publierService.existEmail(publier.getEmail())){
+        if(this.publierService.existEmail(publier.getEmail())){
             redirectAttributes.addFlashAttribute("error","cet email existe déjà.");
             return "redirect:/register";
         }
@@ -38,7 +38,7 @@ public class PublierController {
     @GetMapping("/login")
     public String login_page(Model model){
         model.addAttribute("loginDTO",new LoginDTO());
-        return "connexion";
+        return "login";
     }
 
     @PostMapping("/login-post")
@@ -46,7 +46,7 @@ public class PublierController {
                              RedirectAttributes redirectAttributes){
         if(!publierService.existPublier(loginDTO.getEmail(),loginDTO.getPassword())){
             redirectAttributes.addFlashAttribute("error","email ou mot de passe incorrect");
-            return "redirect:/connexion";
+            return "redirect:/login";
         }
         return "/index";
     }

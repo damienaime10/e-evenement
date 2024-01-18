@@ -1,0 +1,83 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login 04</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/css/style1.css">
+
+</head>
+<body>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section"></h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <div class="img"  style="background-image: url(/assets/img/event.jpeg);">
+                    </div>
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">E-EVENT</h3>
+                            </div>
+                        </div>
+                        <p class="text-danger text-center" th:text="${error}"></p>
+                        <form method="post" th:action="@{/register-post}" th:object="${publier}" class="signin-form">
+                            <div class="form-group mb-3">
+                                <label class="label" for="name">NOM</label>
+                                <input type="text" th:field="*{nom}" th:value="${publier.nom}" class="form-control" placeholder="NOM" id="name" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="contact">CONTACT</label>
+                                <input type="text" th:field="*{contact}" th:value="${publier.contact}" class="form-control" placeholder="CONTACT" id="contact" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="email">EMAIL</label>
+                                <input type="email" th:field="*{email}" th:value="${publier.email}" class="form-control" placeholder="EMAIL" id="email" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="label" for="password">PASSWORD</label>
+                                <input type="password" th:field="*{password}" th:value="${publier.password}" class="form-control" placeholder="********" id="password" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="label" for="logo">LOGO</label>
+                                <input type="file" th:field="*{logo}" th:value="${publier.logo}" class="form-control" placeholder="LOGO" id="logo" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="label" for="description">DESCRIPTION</label>
+                                <input type="text" th:field="*{description}" th:value="${publier.description}" class="form-control" placeholder="description" id="description" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">INSCRIPTION</button>
+                            </div>
+
+                        </form>
+                        <p class="text-center">Avez vous un compte? <a  href="/login">Se connecter</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/popper.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/main1.js"></script>
+
+</body>
+</html>
+
